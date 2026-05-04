@@ -3,179 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vijay Electronics Mukerian | Premium Home Appliances</title>
-    
-    <meta name="description" content="Shop premium ACs, Washing Machines, and Home Appliances at Vijay Electronics Mukerian. Experience authentic retail with local pickup and expert service on Railway Road.">
-    <meta name="keywords" content="Vijay electronics, Mukerian, Mukerian electronics, appliances, geyser, ac, Cooler, washing machine, Mukerian shopping, Punjab electronics">
+    <title>Vijay Electronics Mukerian | Premium Home Living</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 
     <style>
         :root {
             --bg: #030303;
-            --surface: #0a0a0b;
+            --surface: #0a0a0c;
             --accent: #ffffff;
-            --text-dim: #818181;
-            --border: rgba(255, 255, 255, 0.05);
-            --wa-green: #25D366;
-            --glow: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.03);
+            --shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background-color: var(--bg); color: var(--accent); overflow-x: hidden; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        body { background-color: var(--bg); color: var(--accent); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* AUTHENTIC UI COMPONENTS */
-        .glow-sphere { position: fixed; top: -15%; right: -10%; width: 70vw; height: 70vw; background: radial-gradient(circle, var(--glow) 0%, transparent 70%); z-index: -1; pointer-events: none; }
+        /* Animated Background Flow */
+        .ambient-engine {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; background: radial-gradient(circle at 50% 50%, #080808 0%, #000 100%);
+        }
+        .glow-blob {
+            position: absolute; width: 65vw; height: 65vw;
+            background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
+            border-radius: 50%; animation: float 20s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+        }
+        @keyframes float { 
+            0% { transform: translate(-15%, -15%) scale(1); }
+            100% { transform: translate(25%, 15%) scale(1.1); }
+        }
 
+        /* Navigation & Shining Silver Logo */
         nav {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 1200px; z-index: 1000;
-            background: rgba(10, 10, 11, 0.8); backdrop-filter: blur(30px);
-            border: 1px solid var(--border); border-radius: 24px;
-            padding: 12px 30px; display: flex; justify-content: space-between; align-items: center;
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 18px 6%; background: rgba(3, 3, 3, 0.85);
+            backdrop-filter: blur(30px); border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
         }
-
-        .logo { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.5px; text-transform: uppercase; cursor: pointer; }
-        .logo span { font-weight: 200; color: var(--text-dim); }
-
-        .nav-actions { display: flex; align-items: center; gap: 20px; }
-        .cart-trigger { position: relative; cursor: pointer; font-size: 1.4rem; color: var(--accent); transition: 0.3s; }
-        .cart-count { position: absolute; top: -5px; right: -8px; background: #fff; color: #000; font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 10px; }
-        .staff-portal-btn { background: #1a1a1a; color: #fff; padding: 8px 16px; border-radius: 12px; font-size: 0.7rem; font-weight: 700; cursor: pointer; border: 1px solid var(--border); }
-
-        /* HERO SECTION */
-        .hero { padding: 200px 5% 40px; text-align: center; }
-        .location-badge { color: var(--text-dim); text-transform: uppercase; letter-spacing: 5px; font-size: 0.65rem; font-weight: 800; margin-bottom: 20px; display: block; }
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800; letter-spacing: -3px; line-height: 1; margin-bottom: 30px; }
-
-        /* PRODUCT DISPLAY */
-        .showcase { padding: 20px 5% 150px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 35px; }
-
-        .product-card { 
-            background: var(--surface); border: 1px solid var(--border); border-radius: 35px; 
-            padding: 30px; transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); display: flex; flex-direction: column;
+        .logo { 
+            font-weight: 800; font-size: 1.3rem; letter-spacing: -0.8px;
+            background: linear-gradient(90deg, #444, #fff, #aaa, #fff, #444);
+            background-size: 200% auto; -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; animation: silverShine 4s linear infinite;
         }
-        .product-card:hover { transform: translateY(-10px); border-color: #333; }
+        @keyframes silverShine { to { background-position: 200% center; } }
 
-        .image-container { height: 260px; background: #000; border-radius: 25px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; overflow: hidden; position: relative; }
-        .image-container img { max-width: 80%; max-height: 80%; object-fit: contain; }
-
-        .badge { position: absolute; top: 15px; left: 15px; background: #fff; color: #000; font-size: 0.6rem; font-weight: 800; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; }
-
-        .product-info h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
-        .product-price { font-size: 1.6rem; font-weight: 800; margin-bottom: 25px; color: #fff; }
-
-        .add-to-cart { 
-            background: var(--accent); color: #000; padding: 18px; border-radius: 20px; 
-            border: none; font-weight: 800; cursor: pointer; transition: 0.3s;
-            display: flex; justify-content: center; align-items: center; gap: 10px;
+        .search-container { width: 35%; position: relative; }
+        .search-container input {
+            width: 100%; background: var(--glass); border: 1px solid var(--border);
+            padding: 12px 20px 12px 48px; border-radius: 16px; color: #fff;
+            transition: 0.4s; font-size: 0.9rem; outline: none;
         }
-        .add-to-cart:hover { opacity: 0.9; transform: scale(0.98); }
+        .search-container input:focus { border-color: #777; background: rgba(255,255,255,0.07); }
+        .search-container i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #555; font-size: 1.2rem; }
 
-        /* SHOPPING CART OVERLAY */
-        #cartSidebar {
-            position: fixed; top: 0; right: -100%; width: 450px; height: 100%;
-            background: #000; z-index: 2000; padding: 40px;
-            transition: 0.6s cubic-bezier(0.8, 0, 0.2, 1); border-left: 1px solid #222;
-            display: flex; flex-direction: column;
+        /* Store Layout */
+        main { padding: 130px 0 80px; }
+        .section-block { margin-bottom: 80px; padding-left: 6%; animation: reveal 1s ease-out; }
+        @keyframes reveal { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section-title-wrap { display: flex; justify-content: space-between; align-items: center; padding-right: 6%; margin-bottom: 30px; }
+        .section-title-wrap h2 { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.8px; }
+        .rail-nav { display: flex; gap: 12px; }
+        .nav-dot { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
+        .nav-dot:hover { background: #fff; color: #000; border-color: #fff; }
+
+        .product-rail {
+            display: flex; overflow-x: auto; gap: 28px; padding-bottom: 30px;
+            scrollbar-width: none; -ms-overflow-style: none;
         }
-        #cartSidebar.open { right: 0; }
-        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-        .cart-items { flex-grow: 1; overflow-y: auto; margin-bottom: 30px; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #111; padding-bottom: 15px; }
-        .checkout-btn { background: var(--wa-green); color: #fff; padding: 22px; border-radius: 20px; text-align: center; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
+        .product-rail::-webkit-scrollbar { display: none; }
 
-        /* ADMIN DASHBOARD */
-        #adminPanel { position: fixed; top: 0; left: -100%; width: 100%; height: 100%; background: #000; z-index: 3000; transition: 0.6s; padding: 40px; overflow-y: auto; }
-        #adminPanel.open { left: 0; }
-        .form-grid { max-width: 600px; margin: 0 auto; }
-        .form-grid input, .form-grid select, .form-grid textarea { width: 100%; background: #111; border: 1px solid #222; padding: 15px; border-radius: 12px; color: #fff; margin-bottom: 15px; outline: none; }
-        .admin-mini-item { background: #111; padding: 15px; border-radius: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        /* Authentic Product Card */
+        .item-card {
+            min-width: 330px; max-width: 330px; background: var(--surface);
+            border: 1px solid var(--border); border-radius: 32px; padding: 28px;
+            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); position: relative;
+        }
+        .item-card:hover { transform: translateY(-12px); border-color: #555; box-shadow: var(--shadow); }
+        
+        .image-box {
+            width: 100%; height: 240px; background: #000;
+            border-radius: 24px; margin-bottom: 22px;
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+        .image-box img { max-width: 82%; max-height: 82%; object-fit: contain; transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .item-card:hover .image-box img { transform: scale(1.1); }
 
-        #bgAmbient { display: none; }
-        @media (max-width: 500px) { #cartSidebar { width: 100%; } }
+        .category-label { color: #555; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; display: block; }
+        .item-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 15px; color: #eee; }
+        .price-display { font-size: 1.7rem; font-weight: 800; margin-bottom: 25px; }
+        
+        .order-action {
+            width: 100%; padding: 18px; border-radius: 18px; border: none;
+            background: var(--accent); color: #000; font-weight: 800;
+            cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .order-action:hover { opacity: 0.9; transform: scale(0.98); }
+
+        /* Staff Shell */
+        #management {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 2000; padding: 80px 10%; display: none; overflow-y: auto;
+        }
+        .close-portal { position: absolute; top: 40px; right: 40px; font-size: 2rem; cursor: pointer; color: #444; }
+        .close-portal:hover { color: #fff; }
+        .entry-form { max-width: 550px; margin: 0 auto; }
+        .entry-form input, .entry-form select { width: 100%; padding: 18px; margin-bottom: 16px; background: #0d0d0f; border: 1px solid #222; color: #fff; border-radius: 16px; outline: none; }
+        .entry-form input:focus { border-color: #555; }
+        .submit-btn { width: 100%; padding: 20px; background: #fff; color: #000; font-weight: 800; border-radius: 18px; border: none; cursor: pointer; transition: 0.3s; }
+
+        /* Footing */
+        footer { padding: 100px 6% 60px; text-align: center; border-top: 1px solid var(--border); }
+        .signature { font-size: 0.85rem; font-weight: 800; letter-spacing: 4px; color: #333; text-transform: uppercase; margin-bottom: 10px; }
+
+        @media (max-width: 768px) {
+            .search-container { display: none; }
+            .item-card { min-width: 290px; }
+            .section-title-wrap h2 { font-size: 1.4rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="glow-sphere"></div>
-    <audio id="bgAmbient" loop preload="auto">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" type="audio/mpeg">
-    </audio>
+    <div class="ambient-engine"><div class="glow-blob"></div></div>
 
     <nav>
-        <div class="logo" onclick="location.reload()">VIJAY <span>ELECTRONICS</span></div>
-        <div class="nav-actions">
-            <div class="cart-trigger" onclick="toggleCart()">
-                <i class="ph ph-shopping-bag"></i>
-                <span id="cartCount" class="cart-count">0</span>
-            </div>
-            <div class="staff-portal-btn" onclick="openAdmin()">PORTAL</div>
+        <div class="logo">VIJAY <span>ELECTRONICS</span></div>
+        <div class="search-container">
+            <i class="ph ph-magnifying-glass"></i>
+            <input type="text" id="storeSearch" placeholder="Search brands or appliances..." onkeyup="runSearch()">
         </div>
+        <button style="background:none; border:1px solid #222; color:#555; padding:10px 18px; border-radius:12px; font-weight:800; cursor:pointer; font-size: 0.7rem; letter-spacing: 1px;" onclick="unlockPortal()">STAFF ACCESS</button>
     </nav>
 
-    <section class="hero">
-        <span class="location-badge">Railway Road, Mukerian</span>
-        <h1>Authentic Quality.</h1>
-        <div style="max-width: 600px; margin: 0 auto;">
-            <p style="color: var(--text-dim); margin-bottom: 40px; font-weight: 600;">Mukerian's trusted destination for premium Home Appliances. Experience authentic retail with direct showroom pricing.</p>
-        </div>
-    </section>
+    <main id="dynamicCatalog">
+        </main>
 
-    <main class="showcase">
-        <div id="pGrid" class="grid">
-            </div>
-    </main>
+    <footer>
+        <div class="signature">@vijayelectronicsonline</div>
+        <p style="color: #1a1a1a; font-size: 0.75rem; font-weight: 600;">Authorized Retailer • Railway Road, Mukerian • Est. 1999</p>
+    </footer>
 
-    <div id="cartSidebar">
-        <div class="cart-header">
-            <h2 style="font-weight: 800;">Your Cart</h2>
-            <i class="ph ph-x" style="cursor:pointer; font-size: 1.5rem;" onclick="toggleCart()"></i>
-        </div>
-        <div id="cartItems" class="cart-items">
-            </div>
-        <div class="cart-footer">
-            <div style="display:flex; justify-content:space-between; margin-bottom: 20px;">
-                <span style="color: var(--text-dim); font-weight: 600;">Subtotal</span>
-                <span id="cartTotal" style="font-weight: 800; font-size: 1.2rem;">₹0</span>
-            </div>
-            <div onclick="checkout()" class="checkout-btn">
-                <i class="ph-fill ph-whatsapp-logo"></i> COMPLETE ORDER
-            </div>
-        </div>
-    </div>
-
-    <div id="adminPanel">
-        <div class="form-grid">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 40px;">
-                <h1 style="font-weight: 800;">Management</h1>
-                <i class="ph ph-x-circle" style="font-size: 2rem; cursor:pointer;" onclick="closeAdmin()"></i>
-            </div>
-            <input type="hidden" id="editKey">
-            <input type="text" id="nameIn" placeholder="Product Title">
-            <select id="catIn">
-                <option value="AC">Air Conditioner</option>
-                <option value="Cooler">Air Cooler</option>
-                <option value="Geyser">Geyser</option>
-                <option value="Washing Machine">Washing Machine</option>
-                <option value="Refrigerator">Refrigerator</option>
-                <option value="LED TV">LED TV</option>
+    <div id="management">
+        <i class="ph ph-x-circle close-portal" onclick="lockPortal()"></i>
+        <div class="entry-form">
+            <h1 style="margin-bottom: 45px; font-weight: 800; letter-spacing: -1px;">Live Inventory Manager</h1>
+            <input type="text" id="itemName" placeholder="Product Model/Name">
+            <select id="itemCat">
+                <option value="Air Conditioners">Air Conditioners</option>
+                <option value="Refrigerators">Refrigerators</option>
+                <option value="Washing Machines">Washing Machines</option>
+                <option value="LED Televisions">LED Televisions</option>
+                <option value="Symphony Coolers">Symphony Coolers</option>
+                <option value="Premium Geysers">Premium Geysers</option>
             </select>
-            <input type="number" id="priceIn" placeholder="Market Price (INR)">
-            <textarea id="descIn" placeholder="Product Key Features..." rows="3"></textarea>
-            <input type="file" id="imgIn" accept="image/*">
-            <button onclick="saveProduct()" style="width:100%; background:#fff; color:#000; padding:20px; border-radius:15px; font-weight:800; border:none; cursor:pointer;">UPDATE LIVE CATALOG</button>
+            <input type="number" id="itemPrice" placeholder="Final Selling Price (₹)">
+            <input type="file" id="itemFile" accept="image/*">
+            <button class="submit-btn" onclick="pushToCloud()">UPDATE LIVE STOREFRONT</button>
             
-            <div style="margin-top: 50px;" id="adminList"></div>
+            <div id="quickManage" style="margin-top: 60px;"></div>
         </div>
     </div>
 
     <script>
-        // CONFIG
+        // System Config
         const firebaseConfig = {
             apiKey: "AIzaSyAjhi25Q8urRDAS33nxMl3J3PCh8u8-b64",
             authDomain: "igelectrons.firebaseapp.com",
@@ -183,144 +181,104 @@
             databaseURL: "https://igelectrons-default-rtdb.firebaseio.com"
         };
         firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
+        const database = firebase.database();
 
-        let catalog = [];
-        let cart = JSON.parse(localStorage.getItem('vj_cart')) || [];
+        // Immediate Visibility Layer (Local Cache)
+        let masterData = JSON.parse(localStorage.getItem('vj_mukerian_cache')) || [];
+        if (masterData.length > 0) buildStore(masterData);
 
-        // AMBIENT SOUND
-        const amb = document.getElementById('bgAmbient');
-        const playSnd = () => { amb.play().catch(()=>{}); document.removeEventListener('click', playSnd); };
-        document.addEventListener('click', playSnd);
-
-        // DATA SYNC
-        db.ref('inventory').on('value', snap => {
-            const val = snap.val(); catalog = [];
-            for (let key in val) catalog.push({ id: key, ...val[key] });
-            renderUI();
-            renderAdmin();
-            updateCartUI();
+        // Real-time Cloud Synchronization
+        database.ref('inventory').on('value', snap => {
+            const cloudVal = snap.val();
+            masterData = [];
+            for (let id in cloudVal) masterData.push({ id, ...cloudVal[id] });
+            localStorage.setItem('vj_mukerian_cache', JSON.stringify(masterData));
+            buildStore(masterData);
+            refreshManager();
         });
 
-        function renderUI() {
-            const grid = document.getElementById('pGrid');
-            grid.innerHTML = catalog.map(p => `
-                <div class="product-card">
-                    <div class="image-container">
-                        <span class="badge">In Stock</span>
-                        <img src="${p.img}">
-                    </div>
-                    <div class="product-info">
-                        <p style="font-size: 0.6rem; color: #555; text-transform: uppercase; font-weight: 800; letter-spacing: 2px;">${p.cat}</p>
-                        <h3>${p.name}</h3>
-                        <p class="product-price">₹${parseInt(p.price).toLocaleString('en-IN')}</p>
-                        <button class="add-to-cart" onclick="addToCart('${p.id}')">
-                            <i class="ph ph-plus-circle"></i> ADD TO BAG
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // CART LOGIC
-        function toggleCart() { document.getElementById('cartSidebar').classList.toggle('open'); }
-
-        function addToCart(id) {
-            const product = catalog.find(x => x.id === id);
-            cart.push(product);
-            localStorage.setItem('vj_cart', JSON.stringify(cart));
-            updateCartUI();
-            toggleCart();
-        }
-
-        function updateCartUI() {
-            const list = document.getElementById('cartItems');
-            const totalEl = document.getElementById('cartTotal');
-            const countEl = document.getElementById('cartCount');
+        function buildStore(items) {
+            const container = document.getElementById('dynamicCatalog');
+            const groups = [...new Set(items.map(i => i.cat))];
             
-            countEl.innerText = cart.length;
-            let total = 0;
-
-            list.innerHTML = cart.map((item, index) => {
-                total += parseInt(item.price);
+            container.innerHTML = groups.map(cat => {
+                const groupItems = items.filter(i => i.cat === cat);
+                const safeId = cat.replace(/\s/g, '');
                 return `
-                    <div class="cart-item">
-                        <div>
-                            <p style="font-weight: 700; font-size: 0.9rem;">${item.name}</p>
-                            <p style="font-size: 0.8rem; color: var(--text-dim);">₹${parseInt(item.price).toLocaleString('en-IN')}</p>
+                    <section class="section-block">
+                        <div class="section-title-wrap">
+                            <h2>${cat}</h2>
+                            <div class="rail-nav">
+                                <div class="nav-dot" onclick="scrollRail('${safeId}', -400)"><i class="ph ph-caret-left"></i></div>
+                                <div class="nav-dot" onclick="scrollRail('${safeId}', 400)"><i class="ph ph-caret-right"></i></div>
+                            </div>
                         </div>
-                        <i class="ph ph-trash" style="color: #ff4444; cursor:pointer;" onclick="removeFromCart(${index})"></i>
-                    </div>
+                        <div class="product-rail" id="rail-${safeId}">
+                            ${groupItems.map(item => `
+                                <div class="item-card">
+                                    <div class="image-box"><img src="${item.img}"></div>
+                                    <span class="category-label">${item.cat}</span>
+                                    <h3>${item.name}</h3>
+                                    <div class="price-display">₹${parseInt(item.price).toLocaleString('en-IN')}</div>
+                                    <button class="order-action" onclick="sendWhatsApp('${item.name}')">
+                                        <i class="ph-fill ph-whatsapp-logo" style="font-size: 1.4rem; color: #25D366;"></i> CHECK AVAILABILITY
+                                    </button>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
                 `;
             }).join('');
-            totalEl.innerText = `₹${total.toLocaleString('en-IN')}`;
         }
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            localStorage.setItem('vj_cart', JSON.stringify(cart));
-            updateCartUI();
+        function scrollRail(id, val) {
+            document.getElementById(`rail-${id}`).scrollBy({ left: val, behavior: 'smooth' });
         }
 
-        function checkout() {
-            if (cart.length === 0) return alert("Your cart is empty.");
-            let message = "*New Order Inquiry - Vijay Electronics Mukerian*\n\n";
-            let total = 0;
-            cart.forEach((item, i) => {
-                message += `${i+1}. ${item.name} - ₹${item.price}\n`;
-                total += parseInt(item.price);
-            });
-            message += `\n*Total Amount: ₹${total.toLocaleString('en-IN')}*`;
-            window.open(`https://wa.me/919876898832?text=${encodeURIComponent(message)}`, '_blank');
+        function runSearch() {
+            const q = document.getElementById('storeSearch').value.toLowerCase();
+            const results = masterData.filter(i => i.name.toLowerCase().includes(q) || i.cat.toLowerCase().includes(q));
+            buildStore(results);
         }
 
-        // ADMIN LOGIC
-        function openAdmin() { if(prompt("Management PIN:") === "ig99") document.getElementById('adminPanel').classList.add('open'); }
-        function closeAdmin() { document.getElementById('adminPanel').classList.remove('open'); }
+        function sendWhatsApp(name) {
+            const text = `Hi Vijay Electronics Mukerian, I am interested in the ${name}. Is it available in stock?`;
+            window.open(`https://wa.me/919876898832?text=${encodeURIComponent(text)}`, '_blank');
+        }
 
-        function saveProduct() {
-            const id = document.getElementById('editKey').value;
-            const file = document.getElementById('imgIn').files[0];
-            const execute = (uri = null) => {
-                const data = {
-                    name: document.getElementById('nameIn').value,
-                    cat: document.getElementById('catIn').value,
-                    price: document.getElementById('priceIn').value,
-                    desc: document.getElementById('descIn').value
-                };
-                if(uri) data.img = uri;
-                id ? db.ref('inventory/'+id).update(data) : db.ref('inventory').push(data);
-                alert("Showroom Updated.");
-                resetAdmin();
+        // Staff Logic
+        function unlockPortal() { if(prompt("Security PIN:") === "ig99") document.getElementById('management').style.display = 'block'; }
+        function lockPortal() { document.getElementById('management').style.display = 'none'; }
+
+        function pushToCloud() {
+            const file = document.getElementById('itemFile').files[0];
+            if(!file) return alert("Please attach a product image.");
+            
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                database.ref('inventory').push({
+                    name: document.getElementById('itemName').value,
+                    cat: document.getElementById('itemCat').value,
+                    price: document.getElementById('itemPrice').value,
+                    img: reader.result
+                }).then(() => {
+                    alert("Storefront Synchronized!");
+                    document.getElementById('itemName').value = '';
+                    document.getElementById('itemPrice').value = '';
+                });
             };
-            if(file) { const r = new FileReader(); r.onloadend = () => execute(r.result); r.readAsDataURL(file); } else execute();
+            reader.readAsDataURL(file);
         }
 
-        function renderAdmin() {
-            document.getElementById('adminList').innerHTML = catalog.map(p => `
-                <div class="admin-mini-item">
-                    <span>${p.name}</span>
-                    <div>
-                        <i class="ph ph-pencil" onclick="loadAdmin('${p.id}')" style="margin-right:15px; cursor:pointer; color:#666;"></i>
-                        <i class="ph ph-trash" onclick="deleteProd('${p.id}')" style="color:#ff4444; cursor:pointer;"></i>
-                    </div>
+        function refreshManager() {
+            const list = document.getElementById('quickManage');
+            list.innerHTML = masterData.map(i => `
+                <div style="display:flex; justify-content:space-between; background:#0d0d0f; padding:15px; border-radius:14px; margin-bottom:12px; align-items:center; border: 1px solid #111;">
+                    <span style="font-size:0.9rem; font-weight:600;">${i.name}</span>
+                    <i class="ph ph-trash-simple" style="color:#ff4444; cursor:pointer; font-size: 1.2rem;" onclick="database.ref('inventory/${i.id}').remove()"></i>
                 </div>
             `).join('');
         }
-
-        function loadAdmin(id) {
-            const p = catalog.find(x => x.id === id);
-            document.getElementById('editKey').value = p.id;
-            document.getElementById('nameIn').value = p.name;
-            document.getElementById('catIn').value = p.cat;
-            document.getElementById('priceIn').value = p.price;
-            document.getElementById('descIn').value = p.desc;
-        }
-
-        function deleteProd(id) { if(confirm("Delete item?")) db.ref('inventory/'+id).remove(); }
-        function resetAdmin() { ['editKey','nameIn','priceIn','descIn','imgIn'].forEach(el => document.getElementById(el).value=''); }
-
     </script>
 </body>
-    </html>
-    
+</html>
