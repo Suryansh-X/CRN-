@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vijay Electronics Mukerian | Premium Home Living</title>
+    <title>Vijay Electronics Mukerian | Official Store</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 
@@ -18,116 +17,102 @@
             --accent: #ffffff;
             --border: rgba(255, 255, 255, 0.08);
             --glass: rgba(255, 255, 255, 0.03);
-            --shadow: 0 20px 40px rgba(0,0,0,0.4);
+            --silver-gradient: linear-gradient(90deg, #444, #fff, #aaa, #fff, #444);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { background-color: var(--bg); color: var(--accent); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* Animated Background Flow */
+        /* Background Animation */
         .ambient-engine {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1; background: radial-gradient(circle at 50% 50%, #080808 0%, #000 100%);
         }
         .glow-blob {
-            position: absolute; width: 65vw; height: 65vw;
+            position: absolute; width: 70vw; height: 70vw;
             background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
-            border-radius: 50%; animation: float 20s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+            border-radius: 50%; animation: float 22s infinite alternate ease-in-out;
         }
-        @keyframes float { 
-            0% { transform: translate(-15%, -15%) scale(1); }
-            100% { transform: translate(25%, 15%) scale(1.1); }
-        }
+        @keyframes float { 0% { transform: translate(-10%, -10%); } 100% { transform: translate(15%, 10%); } }
 
-        /* Navigation & Shining Silver Logo */
+        /* Navigation & Logo */
         nav {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            padding: 18px 6%; background: rgba(3, 3, 3, 0.85);
+            padding: 18px 6%; background: rgba(3, 3, 3, 0.8);
             backdrop-filter: blur(30px); border-bottom: 1px solid var(--border);
             display: flex; justify-content: space-between; align-items: center;
         }
         .logo { 
             font-weight: 800; font-size: 1.3rem; letter-spacing: -0.8px;
-            background: linear-gradient(90deg, #444, #fff, #aaa, #fff, #444);
-            background-size: 200% auto; -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; animation: silverShine 4s linear infinite;
+            background: var(--silver-gradient); background-size: 200% auto;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: silverShine 4s linear infinite;
         }
         @keyframes silverShine { to { background-position: 200% center; } }
 
-        .search-container { width: 35%; position: relative; }
-        .search-container input {
+        .search-area { width: 35%; position: relative; }
+        .search-area input {
             width: 100%; background: var(--glass); border: 1px solid var(--border);
             padding: 12px 20px 12px 48px; border-radius: 16px; color: #fff;
             transition: 0.4s; font-size: 0.9rem; outline: none;
         }
-        .search-container input:focus { border-color: #777; background: rgba(255,255,255,0.07); }
-        .search-container i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #555; font-size: 1.2rem; }
+        .search-area i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #555; }
 
-        /* Store Layout */
+        /* Category Rails */
         main { padding: 130px 0 80px; }
-        .section-block { margin-bottom: 80px; padding-left: 6%; animation: reveal 1s ease-out; }
-        @keyframes reveal { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .section-block { margin-bottom: 70px; padding-left: 6%; animation: reveal 0.8s ease-out; }
+        @keyframes reveal { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .section-title-wrap { display: flex; justify-content: space-between; align-items: center; padding-right: 6%; margin-bottom: 30px; }
-        .section-title-wrap h2 { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.8px; }
-        .rail-nav { display: flex; gap: 12px; }
-        .nav-dot { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
-        .nav-dot:hover { background: #fff; color: #000; border-color: #fff; }
+        .title-row { display: flex; justify-content: space-between; align-items: center; padding-right: 6%; margin-bottom: 25px; }
+        .title-row h2 { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.5px; }
+        .rail-nav { display: flex; gap: 10px; }
+        .nav-btn { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
+        .nav-btn:hover { background: #fff; color: #000; }
 
         .product-rail {
-            display: flex; overflow-x: auto; gap: 28px; padding-bottom: 30px;
+            display: flex; overflow-x: auto; gap: 28px; padding-bottom: 20px;
             scrollbar-width: none; -ms-overflow-style: none;
         }
         .product-rail::-webkit-scrollbar { display: none; }
 
-        /* Authentic Product Card */
-        .item-card {
-            min-width: 330px; max-width: 330px; background: var(--surface);
-            border: 1px solid var(--border); border-radius: 32px; padding: 28px;
-            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); position: relative;
+        /* Product Card */
+        .card {
+            min-width: 320px; max-width: 320px; background: var(--surface);
+            border: 1px solid var(--border); border-radius: 30px; padding: 25px;
+            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .item-card:hover { transform: translateY(-12px); border-color: #555; box-shadow: var(--shadow); }
+        .card:hover { transform: translateY(-10px); border-color: #555; }
         
-        .image-box {
-            width: 100%; height: 240px; background: #000;
-            border-radius: 24px; margin-bottom: 22px;
+        .img-wrap {
+            width: 100%; height: 230px; background: #000;
+            border-radius: 22px; margin-bottom: 20px;
             display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
-        .image-box img { max-width: 82%; max-height: 82%; object-fit: contain; transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .item-card:hover .image-box img { transform: scale(1.1); }
+        .img-wrap img { max-width: 85%; max-height: 85%; object-fit: contain; }
 
-        .category-label { color: #555; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; display: block; }
-        .item-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 15px; color: #eee; }
-        .price-display { font-size: 1.7rem; font-weight: 800; margin-bottom: 25px; }
+        .price-text { font-size: 1.6rem; font-weight: 800; margin: 15px 0 25px; }
         
-        .order-action {
+        .wa-btn {
             width: 100%; padding: 18px; border-radius: 18px; border: none;
             background: var(--accent); color: #000; font-weight: 800;
-            cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
-        .order-action:hover { opacity: 0.9; transform: scale(0.98); }
 
-        /* Staff Shell */
-        #management {
+        /* Management Portal */
+        #portal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 2000; padding: 80px 10%; display: none; overflow-y: auto;
+            background: #000; z-index: 2000; padding: 60px 5%; display: none; overflow-y: auto;
         }
-        .close-portal { position: absolute; top: 40px; right: 40px; font-size: 2rem; cursor: pointer; color: #444; }
-        .close-portal:hover { color: #fff; }
-        .entry-form { max-width: 550px; margin: 0 auto; }
-        .entry-form input, .entry-form select { width: 100%; padding: 18px; margin-bottom: 16px; background: #0d0d0f; border: 1px solid #222; color: #fff; border-radius: 16px; outline: none; }
-        .entry-form input:focus { border-color: #555; }
-        .submit-btn { width: 100%; padding: 20px; background: #fff; color: #000; font-weight: 800; border-radius: 18px; border: none; cursor: pointer; transition: 0.3s; }
+        .portal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .form-card { background: #0d0d0f; padding: 35px; border-radius: 24px; border: 1px solid #222; }
+        .form-card h3 { margin-bottom: 25px; font-weight: 800; }
+        input, select { width: 100%; padding: 16px; margin-bottom: 15px; background: #1a1a1c; border: 1px solid #333; color: #fff; border-radius: 12px; outline: none; }
+        .sync-btn { width: 100%; padding: 18px; background: #fff; color: #000; font-weight: 800; border-radius: 14px; border: none; cursor: pointer; }
 
-        /* Footing */
-        footer { padding: 100px 6% 60px; text-align: center; border-top: 1px solid var(--border); }
-        .signature { font-size: 0.85rem; font-weight: 800; letter-spacing: 4px; color: #333; text-transform: uppercase; margin-bottom: 10px; }
+        footer { padding: 80px 6% 40px; text-align: center; border-top: 1px solid var(--border); }
+        .signature { font-size: 0.8rem; font-weight: 800; letter-spacing: 4px; color: #333; text-transform: uppercase; }
 
-        @media (max-width: 768px) {
-            .search-container { display: none; }
-            .item-card { min-width: 290px; }
-            .section-title-wrap h2 { font-size: 1.4rem; }
-        }
+        @media (max-width: 900px) { .portal-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -136,44 +121,51 @@
 
     <nav>
         <div class="logo">VIJAY <span>ELECTRONICS</span></div>
-        <div class="search-container">
+        <div class="search-area">
             <i class="ph ph-magnifying-glass"></i>
-            <input type="text" id="storeSearch" placeholder="Search brands or appliances..." onkeyup="runSearch()">
+            <input type="text" id="storeSearch" placeholder="Search products..." onkeyup="runFilter()">
         </div>
-        <button style="background:none; border:1px solid #222; color:#555; padding:10px 18px; border-radius:12px; font-weight:800; cursor:pointer; font-size: 0.7rem; letter-spacing: 1px;" onclick="unlockPortal()">STAFF ACCESS</button>
+        <button style="background:none; border:1px solid #222; color:#555; padding:10px 18px; border-radius:12px; font-weight:800; cursor:pointer;" onclick="openPortal()">STAFF</button>
     </nav>
 
-    <main id="dynamicCatalog">
-        </main>
+    <main id="catalogDisplay"></main>
 
     <footer>
         <div class="signature">@vijayelectronicsonline</div>
-        <p style="color: #1a1a1a; font-size: 0.75rem; font-weight: 600;">Authorized Retailer • Railway Road, Mukerian • Est. 1999</p>
+        <p style="color: #1a1a1a; font-size: 0.7rem; margin-top: 8px;">Railway Road, Mukerian • Authorized Retailer</p>
     </footer>
 
-    <div id="management">
-        <i class="ph ph-x-circle close-portal" onclick="lockPortal()"></i>
-        <div class="entry-form">
-            <h1 style="margin-bottom: 45px; font-weight: 800; letter-spacing: -1px;">Live Inventory Manager</h1>
-            <input type="text" id="itemName" placeholder="Product Model/Name">
-            <select id="itemCat">
-                <option value="Air Conditioners">Air Conditioners</option>
-                <option value="Refrigerators">Refrigerators</option>
-                <option value="Washing Machines">Washing Machines</option>
-                <option value="LED Televisions">LED Televisions</option>
-                <option value="Symphony Coolers">Symphony Coolers</option>
-                <option value="Premium Geysers">Premium Geysers</option>
-            </select>
-            <input type="number" id="itemPrice" placeholder="Final Selling Price (₹)">
-            <input type="file" id="itemFile" accept="image/*">
-            <button class="submit-btn" onclick="pushToCloud()">UPDATE LIVE STOREFRONT</button>
-            
-            <div id="quickManage" style="margin-top: 60px;"></div>
+    <div id="portal">
+        <div style="max-width: 1200px; margin: 0 auto 40px; display: flex; justify-content: space-between; align-items: center;">
+            <h1 style="font-weight: 800;">Business Management</h1>
+            <i class="ph ph-x-circle" onclick="closePortal()" style="font-size: 2.5rem; cursor: pointer; color: #444;"></i>
+        </div>
+
+        <div class="portal-grid">
+            <div class="form-card">
+                <h3>Manage Categories</h3>
+                <input type="text" id="newCatName" placeholder="Category Name (e.g. Smart LED TVs)">
+                <button class="sync-btn" onclick="addCategory()">Create Category</button>
+                <div id="catAdminList" style="margin-top: 25px; max-height: 200px; overflow-y: auto;"></div>
+            </div>
+
+            <div class="form-card">
+                <h3>Add New Product</h3>
+                <input type="text" id="pName" placeholder="Product Model Name">
+                <select id="pCatSelect"><option value="">Select Category</option></select>
+                <input type="number" id="pPrice" placeholder="Selling Price (₹)">
+                <input type="file" id="pFile" accept="image/*">
+                <button class="sync-btn" onclick="syncProduct()">Publish Product</button>
+            </div>
+        </div>
+
+        <div class="form-card" style="margin-top: 40px; grid-column: span 2;">
+            <h3>Live Product Inventory</h3>
+            <div id="quickProductList"></div>
         </div>
     </div>
 
     <script>
-        // System Config
         const firebaseConfig = {
             apiKey: "AIzaSyAjhi25Q8urRDAS33nxMl3J3PCh8u8-b64",
             authDomain: "igelectrons.firebaseapp.com",
@@ -183,45 +175,55 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
-        // Immediate Visibility Layer (Local Cache)
-        let masterData = JSON.parse(localStorage.getItem('vj_mukerian_cache')) || [];
-        if (masterData.length > 0) buildStore(masterData);
+        let masterCatalog = [];
+        let categories = [];
 
-        // Real-time Cloud Synchronization
-        database.ref('inventory').on('value', snap => {
-            const cloudVal = snap.val();
-            masterData = [];
-            for (let id in cloudVal) masterData.push({ id, ...cloudVal[id] });
-            localStorage.setItem('vj_mukerian_cache', JSON.stringify(masterData));
-            buildStore(masterData);
-            refreshManager();
+        // 1. Listen for Categories
+        database.ref('categories').on('value', snap => {
+            const data = snap.val();
+            categories = [];
+            for (let id in data) categories.push({ id, ...data[id] });
+            updateCatDropdown();
+            renderCatList();
         });
 
-        function buildStore(items) {
-            const container = document.getElementById('dynamicCatalog');
-            const groups = [...new Set(items.map(i => i.cat))];
-            
-            container.innerHTML = groups.map(cat => {
-                const groupItems = items.filter(i => i.cat === cat);
-                const safeId = cat.replace(/\s/g, '');
+        // 2. Listen for Products
+        database.ref('inventory').on('value', snap => {
+            const val = snap.val();
+            masterCatalog = [];
+            for (let id in val) masterCatalog.push({ id, ...val[id] });
+            renderStore();
+            refreshProductList();
+        });
+
+        function renderStore() {
+            const display = document.getElementById('catalogDisplay');
+            if (categories.length === 0) {
+                display.innerHTML = '<p style="text-align:center; color:#444;">No categories created yet.</p>';
+                return;
+            }
+
+            display.innerHTML = categories.map(cat => {
+                const filtered = masterCatalog.filter(i => i.cat === cat.name);
+                if (filtered.length === 0) return ''; // Don't show empty categories
+                const rid = cat.id;
                 return `
                     <section class="section-block">
-                        <div class="section-title-wrap">
-                            <h2>${cat}</h2>
+                        <div class="title-row">
+                            <h2>${cat.name}</h2>
                             <div class="rail-nav">
-                                <div class="nav-dot" onclick="scrollRail('${safeId}', -400)"><i class="ph ph-caret-left"></i></div>
-                                <div class="nav-dot" onclick="scrollRail('${safeId}', 400)"><i class="ph ph-caret-right"></i></div>
+                                <div class="nav-btn" onclick="moveRail('${rid}', -400)"><i class="ph ph-caret-left"></i></div>
+                                <div class="nav-btn" onclick="moveRail('${rid}', 400)"><i class="ph ph-caret-right"></i></div>
                             </div>
                         </div>
-                        <div class="product-rail" id="rail-${safeId}">
-                            ${groupItems.map(item => `
-                                <div class="item-card">
-                                    <div class="image-box"><img src="${item.img}"></div>
-                                    <span class="category-label">${item.cat}</span>
-                                    <h3>${item.name}</h3>
-                                    <div class="price-display">₹${parseInt(item.price).toLocaleString('en-IN')}</div>
-                                    <button class="order-action" onclick="sendWhatsApp('${item.name}')">
-                                        <i class="ph-fill ph-whatsapp-logo" style="font-size: 1.4rem; color: #25D366;"></i> CHECK AVAILABILITY
+                        <div class="product-rail" id="r-${rid}">
+                            ${filtered.map(item => `
+                                <div class="card">
+                                    <div class="img-wrap"><img src="${item.img}"></div>
+                                    <h3 style="font-size:1.1rem; min-height: 2.4rem;">${item.name}</h3>
+                                    <div class="price-text">₹${parseInt(item.price).toLocaleString('en-IN')}</div>
+                                    <button class="wa-btn" onclick="order('${item.name}')">
+                                        <i class="ph-fill ph-whatsapp-logo" style="color:#25D366; font-size:1.4rem;"></i> ORDER INQUIRY
                                     </button>
                                 </div>
                             `).join('')}
@@ -231,53 +233,77 @@
             }).join('');
         }
 
-        function scrollRail(id, val) {
-            document.getElementById(`rail-${id}`).scrollBy({ left: val, behavior: 'smooth' });
+        // --- Logic Handlers ---
+        function moveRail(id, v) { document.getElementById('r-'+id).scrollBy({ left: v, behavior: 'smooth' }); }
+        
+        function order(n) {
+            window.open(`https://wa.me/919876898832?text=${encodeURIComponent(`Hi, I'm interested in the ${n}.`)}`, '_blank');
         }
 
-        function runSearch() {
-            const q = document.getElementById('storeSearch').value.toLowerCase();
-            const results = masterData.filter(i => i.name.toLowerCase().includes(q) || i.cat.toLowerCase().includes(q));
-            buildStore(results);
+        function openPortal() { if(prompt("Security PIN:") === "ig99") document.getElementById('portal').style.display = 'block'; }
+        function closePortal() { document.getElementById('portal').style.display = 'none'; }
+
+        // Category Logic
+        function addCategory() {
+            const name = document.getElementById('newCatName').value;
+            if(!name) return;
+            database.ref('categories').push({ name });
+            document.getElementById('newCatName').value = '';
         }
 
-        function sendWhatsApp(name) {
-            const text = `Hi Vijay Electronics Mukerian, I am interested in the ${name}. Is it available in stock?`;
-            window.open(`https://wa.me/919876898832?text=${encodeURIComponent(text)}`, '_blank');
+        function updateCatDropdown() {
+            const select = document.getElementById('pCatSelect');
+            select.innerHTML = '<option value="">Select Category</option>' + 
+                categories.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
         }
 
-        // Staff Logic
-        function unlockPortal() { if(prompt("Security PIN:") === "ig99") document.getElementById('management').style.display = 'block'; }
-        function lockPortal() { document.getElementById('management').style.display = 'none'; }
-
-        function pushToCloud() {
-            const file = document.getElementById('itemFile').files[0];
-            if(!file) return alert("Please attach a product image.");
-            
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                database.ref('inventory').push({
-                    name: document.getElementById('itemName').value,
-                    cat: document.getElementById('itemCat').value,
-                    price: document.getElementById('itemPrice').value,
-                    img: reader.result
-                }).then(() => {
-                    alert("Storefront Synchronized!");
-                    document.getElementById('itemName').value = '';
-                    document.getElementById('itemPrice').value = '';
-                });
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function refreshManager() {
-            const list = document.getElementById('quickManage');
-            list.innerHTML = masterData.map(i => `
-                <div style="display:flex; justify-content:space-between; background:#0d0d0f; padding:15px; border-radius:14px; margin-bottom:12px; align-items:center; border: 1px solid #111;">
-                    <span style="font-size:0.9rem; font-weight:600;">${i.name}</span>
-                    <i class="ph ph-trash-simple" style="color:#ff4444; cursor:pointer; font-size: 1.2rem;" onclick="database.ref('inventory/${i.id}').remove()"></i>
+        function renderCatList() {
+            document.getElementById('catAdminList').innerHTML = categories.map(c => `
+                <div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #222;">
+                    <span>${c.name}</span>
+                    <i class="ph ph-trash" style="color:red; cursor:pointer;" onclick="database.ref('categories/${c.id}').remove()"></i>
                 </div>
             `).join('');
+        }
+
+        // Product Logic
+        function syncProduct() {
+            const f = document.getElementById('pFile').files[0];
+            const name = document.getElementById('pName').value;
+            const cat = document.getElementById('pCatSelect').value;
+            const price = document.getElementById('pPrice').value;
+            
+            if(!f || !name || !cat || !price) return alert("Fill all fields");
+            
+            const r = new FileReader();
+            r.onloadend = () => {
+                database.ref('inventory').push({ name, cat, price, img: r.result })
+                .then(() => { alert("Published!"); document.getElementById('pName').value = ''; });
+            };
+            r.readAsDataURL(f);
+        }
+
+        function refreshProductList() {
+            document.getElementById('quickProductList').innerHTML = masterCatalog.map(i => `
+                <div style="display:flex; justify-content:space-between; padding:12px; background:#1a1a1c; border-radius:10px; margin-bottom:8px;">
+                    <span>${i.name} <small style="color:#555">(${i.cat})</small></span>
+                    <i class="ph ph-trash" style="color:red; cursor:pointer;" onclick="database.ref('inventory/${i.id}').remove()"></i>
+                </div>
+            `).join('');
+        }
+
+        function runFilter() {
+            const q = document.getElementById('storeSearch').value.toLowerCase();
+            const filtered = masterCatalog.filter(i => i.name.toLowerCase().includes(q) || i.cat.toLowerCase().includes(q));
+            // Basic search render
+            if(q === "") return renderStore();
+            document.getElementById('catalogDisplay').innerHTML = `
+                <section class="section-block">
+                    <h2>Search Results</h2>
+                    <div class="product-rail" style="flex-wrap: wrap;">
+                        ${filtered.map(item => `<div class="card">${item.name}</div>`).join('')}
+                    </div>
+                </section>`;
         }
     </script>
 </body>
