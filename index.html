@@ -17,102 +17,98 @@
             --accent: #ffffff;
             --border: rgba(255, 255, 255, 0.08);
             --glass: rgba(255, 255, 255, 0.03);
-            --silver-gradient: linear-gradient(90deg, #444, #fff, #aaa, #fff, #444);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { background-color: var(--bg); color: var(--accent); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* Background Animation */
+        /* Animated Ambient Background */
         .ambient-engine {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1; background: radial-gradient(circle at 50% 50%, #080808 0%, #000 100%);
         }
         .glow-blob {
-            position: absolute; width: 70vw; height: 70vw;
+            position: absolute; width: 60vw; height: 60vw;
             background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
-            border-radius: 50%; animation: float 22s infinite alternate ease-in-out;
+            border-radius: 50%; animation: float 15s infinite alternate ease-in-out;
         }
-        @keyframes float { 0% { transform: translate(-10%, -10%); } 100% { transform: translate(15%, 10%); } }
+        @keyframes float { 0% { transform: translate(-10%, -10%); } 100% { transform: translate(15%, 5%); } }
 
-        /* Navigation & Logo */
+        /* Shimmering Silver Logo */
         nav {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            padding: 18px 6%; background: rgba(3, 3, 3, 0.8);
+            padding: 18px 6%; background: rgba(3, 3, 3, 0.85);
             backdrop-filter: blur(30px); border-bottom: 1px solid var(--border);
             display: flex; justify-content: space-between; align-items: center;
         }
         .logo { 
             font-weight: 800; font-size: 1.3rem; letter-spacing: -0.8px;
-            background: var(--silver-gradient); background-size: 200% auto;
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: silverShine 4s linear infinite;
+            background: linear-gradient(90deg, #444, #fff, #aaa, #fff, #444);
+            background-size: 200% auto; -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; animation: silverShine 4s linear infinite;
         }
         @keyframes silverShine { to { background-position: 200% center; } }
 
-        .search-area { width: 35%; position: relative; }
-        .search-area input {
+        /* Search Bar */
+        .search-container { width: 35%; position: relative; }
+        .search-container input {
             width: 100%; background: var(--glass); border: 1px solid var(--border);
             padding: 12px 20px 12px 48px; border-radius: 16px; color: #fff;
             transition: 0.4s; font-size: 0.9rem; outline: none;
         }
-        .search-area i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #555; }
+        .search-container i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #555; }
 
-        /* Category Rails */
-        main { padding: 130px 0 80px; }
-        .section-block { margin-bottom: 70px; padding-left: 6%; animation: reveal 0.8s ease-out; }
-        @keyframes reveal { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
+        /* Main Store Sections */
+        main { padding: 130px 0 80px; min-height: 80vh; }
+        .section-block { margin-bottom: 60px; padding-left: 6%; }
         .title-row { display: flex; justify-content: space-between; align-items: center; padding-right: 6%; margin-bottom: 25px; }
         .title-row h2 { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.5px; }
-        .rail-nav { display: flex; gap: 10px; }
-        .nav-btn { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
-        .nav-btn:hover { background: #fff; color: #000; }
-
+        
+        /* Horizontal Product Rails */
         .product-rail {
-            display: flex; overflow-x: auto; gap: 28px; padding-bottom: 20px;
+            display: flex; overflow-x: auto; gap: 25px; padding-bottom: 25px;
             scrollbar-width: none; -ms-overflow-style: none;
         }
         .product-rail::-webkit-scrollbar { display: none; }
 
-        /* Product Card */
+        /* Product Cards */
         .card {
-            min-width: 320px; max-width: 320px; background: var(--surface);
-            border: 1px solid var(--border); border-radius: 30px; padding: 25px;
-            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            min-width: 310px; max-width: 310px; background: var(--surface);
+            border: 1px solid var(--border); border-radius: 28px; padding: 22px;
+            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .card:hover { transform: translateY(-10px); border-color: #555; }
-        
+        .card:hover { border-color: #555; transform: translateY(-8px); }
         .img-wrap {
-            width: 100%; height: 230px; background: #000;
-            border-radius: 22px; margin-bottom: 20px;
+            width: 100%; height: 220px; background: #000;
+            border-radius: 20px; margin-bottom: 18px;
             display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
         .img-wrap img { max-width: 85%; max-height: 85%; object-fit: contain; }
-
-        .price-text { font-size: 1.6rem; font-weight: 800; margin: 15px 0 25px; }
         
+        .price { font-size: 1.6rem; font-weight: 800; margin: 12px 0 20px; }
         .wa-btn {
-            width: 100%; padding: 18px; border-radius: 18px; border: none;
-            background: var(--accent); color: #000; font-weight: 800;
+            width: 100%; padding: 16px; border-radius: 14px; border: none;
+            background: #fff; color: #000; font-weight: 800;
             cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
 
-        /* Management Portal */
+        /* Staff Portal Layout */
         #portal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 2000; padding: 60px 5%; display: none; overflow-y: auto;
+            background: #000; z-index: 2000; padding: 50px 5%; display: none; overflow-y: auto;
         }
-        .portal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1200px; margin: 0 auto; }
-        .form-card { background: #0d0d0f; padding: 35px; border-radius: 24px; border: 1px solid #222; }
-        .form-card h3 { margin-bottom: 25px; font-weight: 800; }
-        input, select { width: 100%; padding: 16px; margin-bottom: 15px; background: #1a1a1c; border: 1px solid #333; color: #fff; border-radius: 12px; outline: none; }
-        .sync-btn { width: 100%; padding: 18px; background: #fff; color: #000; font-weight: 800; border-radius: 14px; border: none; cursor: pointer; }
+        .portal-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .m-card { background: #0d0d0f; padding: 30px; border-radius: 20px; border: 1px solid #222; }
+        input, select { width: 100%; padding: 14px; margin-bottom: 12px; background: #1a1a1c; border: 1px solid #333; color: #fff; border-radius: 10px; outline: none; }
+        .btn-p { width: 100%; padding: 15px; background: #fff; color: #000; font-weight: 800; border-radius: 10px; cursor: pointer; border: none; }
 
-        footer { padding: 80px 6% 40px; text-align: center; border-top: 1px solid var(--border); }
-        .signature { font-size: 0.8rem; font-weight: 800; letter-spacing: 4px; color: #333; text-transform: uppercase; }
+        footer { padding: 80px 0 40px; text-align: center; border-top: 1px solid var(--border); }
+        .signature { font-size: 0.85rem; font-weight: 800; letter-spacing: 4px; color: #333; text-transform: uppercase; }
 
-        @media (max-width: 900px) { .portal-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 800px) {
+            .portal-grid { grid-template-columns: 1fr; }
+            .search-container { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -121,47 +117,48 @@
 
     <nav>
         <div class="logo">VIJAY <span>ELECTRONICS</span></div>
-        <div class="search-area">
+        <div class="search-container">
             <i class="ph ph-magnifying-glass"></i>
-            <input type="text" id="storeSearch" placeholder="Search products..." onkeyup="runFilter()">
+            <input type="text" id="mainSearch" placeholder="Search brands or products..." onkeyup="filterStore()">
         </div>
-        <button style="background:none; border:1px solid #222; color:#555; padding:10px 18px; border-radius:12px; font-weight:800; cursor:pointer;" onclick="openPortal()">STAFF</button>
+        <button style="background:none; border:1px solid #333; color:#fff; padding:8px 16px; border-radius:10px; cursor:pointer; font-weight: 800; font-size: 0.7rem;" onclick="openPortal()">STAFF ACCESS</button>
     </nav>
 
-    <main id="catalogDisplay"></main>
+    <main id="homeContainer">
+        </main>
 
     <footer>
         <div class="signature">@vijayelectronicsonline</div>
-        <p style="color: #1a1a1a; font-size: 0.7rem; margin-top: 8px;">Railway Road, Mukerian • Authorized Retailer</p>
+        <p style="color: #1a1a1a; font-size: 0.7rem; margin-top: 10px;">Railway Road, Mukerian • Authorized Retailer</p>
     </footer>
 
     <div id="portal">
-        <div style="max-width: 1200px; margin: 0 auto 40px; display: flex; justify-content: space-between; align-items: center;">
-            <h1 style="font-weight: 800;">Business Management</h1>
-            <i class="ph ph-x-circle" onclick="closePortal()" style="font-size: 2.5rem; cursor: pointer; color: #444;"></i>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px; max-width:1100px; margin-left:auto; margin-right:auto;">
+            <h1 style="font-weight: 800;">Store Management</h1>
+            <i class="ph ph-x-circle" onclick="closePortal()" style="font-size:2.5rem; cursor:pointer; color: #444;"></i>
         </div>
-
+        
         <div class="portal-grid">
-            <div class="form-card">
-                <h3>Manage Categories</h3>
-                <input type="text" id="newCatName" placeholder="Category Name (e.g. Smart LED TVs)">
-                <button class="sync-btn" onclick="addCategory()">Create Category</button>
-                <div id="catAdminList" style="margin-top: 25px; max-height: 200px; overflow-y: auto;"></div>
+            <div class="m-card">
+                <h3>1. Manage Categories</h3>
+                <input type="text" id="catName" placeholder="Category Name (e.g. Smart TV)">
+                <button class="btn-p" onclick="saveCat()">Create Category</button>
+                <div id="catList" style="margin-top:25px; max-height: 200px; overflow-y: auto;"></div>
             </div>
 
-            <div class="form-card">
-                <h3>Add New Product</h3>
-                <input type="text" id="pName" placeholder="Product Model Name">
+            <div class="m-card">
+                <h3>2. Add Product</h3>
+                <input type="text" id="pName" placeholder="Product Name">
                 <select id="pCatSelect"><option value="">Select Category</option></select>
-                <input type="number" id="pPrice" placeholder="Selling Price (₹)">
-                <input type="file" id="pFile" accept="image/*">
-                <button class="sync-btn" onclick="syncProduct()">Publish Product</button>
+                <input type="number" id="pPrice" placeholder="Price (₹)">
+                <input type="file" id="pImage" accept="image/*">
+                <button class="btn-p" onclick="saveProduct()">Upload Product</button>
             </div>
         </div>
 
-        <div class="form-card" style="margin-top: 40px; grid-column: span 2;">
-            <h3>Live Product Inventory</h3>
-            <div id="quickProductList"></div>
+        <div class="m-card" style="margin-top:30px; max-width: 1100px; margin-left:auto; margin-right:auto;">
+            <h3>Inventory Overview</h3>
+            <div id="invList"></div>
         </div>
     </div>
 
@@ -173,138 +170,101 @@
             databaseURL: "https://igelectrons-default-rtdb.firebaseio.com"
         };
         firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
+        const db = firebase.database();
 
-        let masterCatalog = [];
-        let categories = [];
+        let cats = [];
+        let prods = [];
 
-        // 1. Listen for Categories
-        database.ref('categories').on('value', snap => {
-            const data = snap.val();
-            categories = [];
-            for (let id in data) categories.push({ id, ...data[id] });
-            updateCatDropdown();
-            renderCatList();
+        // Real-time Data Syncing
+        db.ref('categories').on('value', s => {
+            const d = s.val(); cats = [];
+            for(let id in d) cats.push({id, ...d[id]});
+            renderAll();
         });
 
-        // 2. Listen for Products
-        database.ref('inventory').on('value', snap => {
-            const val = snap.val();
-            masterCatalog = [];
-            for (let id in val) masterCatalog.push({ id, ...val[id] });
-            renderStore();
-            refreshProductList();
+        db.ref('inventory').on('value', s => {
+            const d = s.val(); prods = [];
+            for(let id in d) prods.push({id, ...d[id]});
+            renderAll();
         });
 
-        function renderStore() {
-            const display = document.getElementById('catalogDisplay');
-            if (categories.length === 0) {
-                display.innerHTML = '<p style="text-align:center; color:#444;">No categories created yet.</p>';
-                return;
+        function renderAll() {
+            const container = document.getElementById('homeContainer');
+            
+            // 1. Render Storefront Home Page
+            if(cats.length === 0 && prods.length === 0) {
+                container.innerHTML = `<div style="text-align:center; padding:100px 0; color:#333;"><h3>Showroom Empty</h3><p>Use Staff Access to add categories and items.</p></div>`;
+            } else {
+                container.innerHTML = cats.map(c => {
+                    const items = prods.filter(p => p.cat === c.name);
+                    if(items.length === 0) return ''; // Skip empty categories on home
+                    return `
+                        <section class="section-block">
+                            <div class="title-row"><h2>${c.name}</h2></div>
+                            <div class="product-rail">
+                                ${items.map(i => `
+                                    <div class="card">
+                                        <div class="img-wrap"><img src="${i.img}"></div>
+                                        <h3 style="font-size:1.1rem; height:2.8rem; overflow:hidden;">${i.name}</h3>
+                                        <div class="price">₹${parseInt(i.price).toLocaleString('en-IN')}</div>
+                                        <button class="wa-btn" onclick="order('${i.name}')">
+                                            <i class="ph-fill ph-whatsapp-logo" style="color:#25D366; font-size: 1.4rem;"></i> ORDER INQUIRY
+                                        </button>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </section>
+                    `;
+                }).join('');
             }
 
-            display.innerHTML = categories.map(cat => {
-                const filtered = masterCatalog.filter(i => i.cat === cat.name);
-                if (filtered.length === 0) return ''; // Don't show empty categories
-                const rid = cat.id;
-                return `
-                    <section class="section-block">
-                        <div class="title-row">
-                            <h2>${cat.name}</h2>
-                            <div class="rail-nav">
-                                <div class="nav-btn" onclick="moveRail('${rid}', -400)"><i class="ph ph-caret-left"></i></div>
-                                <div class="nav-btn" onclick="moveRail('${rid}', 400)"><i class="ph ph-caret-right"></i></div>
-                            </div>
-                        </div>
-                        <div class="product-rail" id="r-${rid}">
-                            ${filtered.map(item => `
-                                <div class="card">
-                                    <div class="img-wrap"><img src="${item.img}"></div>
-                                    <h3 style="font-size:1.1rem; min-height: 2.4rem;">${item.name}</h3>
-                                    <div class="price-text">₹${parseInt(item.price).toLocaleString('en-IN')}</div>
-                                    <button class="wa-btn" onclick="order('${item.name}')">
-                                        <i class="ph-fill ph-whatsapp-logo" style="color:#25D366; font-size:1.4rem;"></i> ORDER INQUIRY
-                                    </button>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </section>
-                `;
-            }).join('');
+            // 2. Update Management UI Components
+            document.getElementById('pCatSelect').innerHTML = `<option value="">Select Category</option>` + cats.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+            document.getElementById('catList').innerHTML = cats.map(c => `<div style="display:flex; justify-content:space-between; padding:8px; border-bottom:1px solid #222;">${c.name} <i class="ph ph-trash" onclick="db.ref('categories/${c.id}').remove()" style="color:red; cursor:pointer;"></i></div>`).join('');
+            document.getElementById('invList').innerHTML = prods.map(p => `<div style="display:flex; justify-content:space-between; padding:12px; border-bottom:1px solid #222; align-items:center;"><span>${p.name} <small style="color:#444">(${p.cat})</small></span> <i class="ph ph-trash" onclick="db.ref('inventory/${p.id}').remove()" style="color:red; cursor:pointer;"></i></div>`).join('');
         }
 
-        // --- Logic Handlers ---
-        function moveRail(id, v) { document.getElementById('r-'+id).scrollBy({ left: v, behavior: 'smooth' }); }
-        
-        function order(n) {
-            window.open(`https://wa.me/919876898832?text=${encodeURIComponent(`Hi, I'm interested in the ${n}.`)}`, '_blank');
+        function saveCat() {
+            const name = document.getElementById('catName').value;
+            if(name) db.ref('categories').push({name}).then(() => document.getElementById('catName').value = '');
+        }
+
+        function saveProduct() {
+            const file = document.getElementById('pImage').files[0];
+            const name = document.getElementById('pName').value;
+            const price = document.getElementById('pPrice').value;
+            const cat = document.getElementById('pCatSelect').value;
+            
+            if(!file || !name || !price || !cat) return alert("Please fill all product details and select an image.");
+            
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                db.ref('inventory').push({name, price, cat, img: reader.result})
+                .then(() => { 
+                    alert("Product Live on Home Page!"); 
+                    document.getElementById('pName').value = ''; 
+                    document.getElementById('pPrice').value = '';
+                });
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function filterStore() {
+            const q = document.getElementById('mainSearch').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(q) ? 'block' : 'none';
+            });
+        }
+
+        function order(n) { 
+            const msg = `Hi Vijay Electronics Mukerian, I'm interested in the ${n}. Is it available?`;
+            window.open(`https://wa.me/919876898832?text=${encodeURIComponent(msg)}`, '_blank'); 
         }
 
         function openPortal() { if(prompt("Security PIN:") === "ig99") document.getElementById('portal').style.display = 'block'; }
         function closePortal() { document.getElementById('portal').style.display = 'none'; }
-
-        // Category Logic
-        function addCategory() {
-            const name = document.getElementById('newCatName').value;
-            if(!name) return;
-            database.ref('categories').push({ name });
-            document.getElementById('newCatName').value = '';
-        }
-
-        function updateCatDropdown() {
-            const select = document.getElementById('pCatSelect');
-            select.innerHTML = '<option value="">Select Category</option>' + 
-                categories.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
-        }
-
-        function renderCatList() {
-            document.getElementById('catAdminList').innerHTML = categories.map(c => `
-                <div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #222;">
-                    <span>${c.name}</span>
-                    <i class="ph ph-trash" style="color:red; cursor:pointer;" onclick="database.ref('categories/${c.id}').remove()"></i>
-                </div>
-            `).join('');
-        }
-
-        // Product Logic
-        function syncProduct() {
-            const f = document.getElementById('pFile').files[0];
-            const name = document.getElementById('pName').value;
-            const cat = document.getElementById('pCatSelect').value;
-            const price = document.getElementById('pPrice').value;
-            
-            if(!f || !name || !cat || !price) return alert("Fill all fields");
-            
-            const r = new FileReader();
-            r.onloadend = () => {
-                database.ref('inventory').push({ name, cat, price, img: r.result })
-                .then(() => { alert("Published!"); document.getElementById('pName').value = ''; });
-            };
-            r.readAsDataURL(f);
-        }
-
-        function refreshProductList() {
-            document.getElementById('quickProductList').innerHTML = masterCatalog.map(i => `
-                <div style="display:flex; justify-content:space-between; padding:12px; background:#1a1a1c; border-radius:10px; margin-bottom:8px;">
-                    <span>${i.name} <small style="color:#555">(${i.cat})</small></span>
-                    <i class="ph ph-trash" style="color:red; cursor:pointer;" onclick="database.ref('inventory/${i.id}').remove()"></i>
-                </div>
-            `).join('');
-        }
-
-        function runFilter() {
-            const q = document.getElementById('storeSearch').value.toLowerCase();
-            const filtered = masterCatalog.filter(i => i.name.toLowerCase().includes(q) || i.cat.toLowerCase().includes(q));
-            // Basic search render
-            if(q === "") return renderStore();
-            document.getElementById('catalogDisplay').innerHTML = `
-                <section class="section-block">
-                    <h2>Search Results</h2>
-                    <div class="product-rail" style="flex-wrap: wrap;">
-                        ${filtered.map(item => `<div class="card">${item.name}</div>`).join('')}
-                    </div>
-                </section>`;
-        }
     </script>
 </body>
 </html>
